@@ -2,13 +2,13 @@
 
 Ambiente de sistema operacional simulado no navegador. Inclui inicialização, desktop, notas persistentes, monitor de recursos e gerenciador de arquivos local integrado ao terminal.
 
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/4471a761-9598-4ac2-a0e5-55f3a622f03e" />
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/4471a761-9598-4ac2-a0e5-55f3a622f03e" />
 
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/bc4db59e-2381-446d-ae08-42cfa9d58475" />
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/bc4db59e-2381-446d-ae08-42cfa9d58475" />
 
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/73643250-b351-4488-9ba6-498b61c2698f" />
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/73643250-b351-4488-9ba6-498b61c2698f" />
 
-<img width="1919" height="1077" alt="image" src="https://github.com/user-attachments/assets/b2e0b6b1-a365-4b1f-a80d-671fdf7347b5" />
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/b2e0b6b1-a365-4b1f-a80d-671fdf7347b5" />
 
 
 
