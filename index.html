@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08111f" />
+    <title>SO-boot</title>
+    <link rel="stylesheet" href="styles.css?v=2" />
+  </head>
+  <body>
+    <main id="access-screen" class="access-screen hidden" aria-labelledby="access-title">
+      <section class="access-card">
+        <div class="boot-mark" aria-hidden="true">S<span>O</span></div>
+        <p class="eyebrow">SO-boot / acesso local</p>
+        <h1 id="access-title">Proteja seu ambiente</h1>
+        <p id="access-description" class="access-description">Crie um PIN para liberar este ambiente neste navegador.</p>
+        <form id="access-form" novalidate>
+          <label for="access-pin">PIN de acesso</label>
+          <input id="access-pin" name="pin" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="12" autocomplete="new-password" placeholder="De 4 a 12 números" required />
+          <div id="access-confirm-group">
+            <label for="access-confirm">Confirme o PIN</label>
+            <input id="access-confirm" name="confirm" type="password" inputmode="numeric" pattern="[0-9]*" minlength="4" maxlength="12" autocomplete="new-password" placeholder="Digite o PIN novamente" required />
+          </div>
+          <p id="access-feedback" class="access-feedback" aria-live="polite"></p>
+          <button id="access-submit" class="primary-button" type="submit">Configurar acesso</button>
+        </form>
+        <button id="reset-access" class="text-button hidden" type="button">Esqueci meu PIN</button>
+      </section>
+    </main>
+    <main id="boot-screen" class="boot-screen" aria-live="polite">
+      <div class="boot-card">
+        <div class="boot-mark">S<span>O</span></div>
+        <p class="eyebrow">SO-boot / inicialização segura</p>
+        <h1>Iniciando seu ambiente</h1>
+        <div class="progress-track" aria-label="Progresso da inicialização"><div id="boot-progress" class="progress-fill"></div></div>
+        <p id="boot-message" class="boot-message">Verificando componentes essenciais...</p>
+        <button id="skip-boot" class="text-button">Pular animação</button>
+      </div>
+    </main>
+
+    <main id="desktop" class="desktop hidden">
+      <section class="welcome-panel">
+        <p class="eyebrow">Ambiente pessoal</p>
+        <h2 id="greeting">Bom dia, operador.</h2>
+        <p>Seu espaço de trabalho está pronto. Abra uma ferramenta ou acompanhe o status do sistema.</p>
+        <div class="quick-actions">
+          <button class="primary-button" data-open="notes">Criar nota</button>
+          <button class="secondary-button" data-open="terminal">Abrir terminal</button>
+        </div>
+      </section>
+
+      <aside class="system-overview" aria-label="Visão geral do ambiente">
+        <div class="overview-header">
+          <div><p class="eyebrow">Centro de comando</p><h2>Sessão ativa</h2></div>
+          <span class="live-indicator"><i></i>Ao vivo</span>
+        </div>
+        <div class="overview-time">
+          <time id="dashboard-time">--:--</time>
+          <p id="dashboard-date">Carregando data</p>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-health">
+          <span class="health-orbit"><b>100%</b><small>íntegro</small></span>
+          <div><strong>Ambiente protegido</strong><p>Todos os componentes essenciais respondendo normalmente.</p></div>
+        </div>
+        <div class="activity-list" aria-label="Atividade recente">
+          <p><span class="activity-icon accent">↗</span><span><b>Inicialização concluída</b><small>Componentes prontos para uso</small></span><time>agora</time></p>
+          <p><span class="activity-icon">⌁</span><span><b>Conexão local</b><small>Monitoramento disponível</small></span><time>seguro</time></p>
+        </div>
+        <button class="overview-link" type="button" data-open="monitor">Ver detalhes do sistema <span>→</span></button>
+      </aside>
+
+      <section class="app-grid" aria-label="Aplicativos">
+        <button class="app-icon" data-open="wifi"><span class="icon wifi-icon">&#8981;</span><span>Wi&#8209;Fi</span></button>
+        <button class="app-icon" data-open="notes"><span class="icon note-icon">✦</span><span>Notas</span></button>
+        <button class="app-icon" data-open="terminal"><span class="icon terminal-icon">›_</span><span>Terminal</span></button>
+        <button class="app-icon" data-open="monitor"><span class="icon monitor-icon">◫</span><span>Monitor</span></button>
+        <button class="app-icon" data-open="files"><span class="icon files-icon">▣</span><span>Arquivos</span></button>
+        <button class="app-icon" data-open="devices"><span class="icon devices-icon">&#9881;</span><span>Dispositivos</span></button>
+      </section>
+
+      <section class="wifi-launch" aria-label="Conexão sem fio">
+        <button class="app-icon" data-open="wifi"><span class="icon wifi-icon">⌁</span><span>Wi‑Fi</span></button>
+      </section>
+
+      <section class="status-card">
+        <div><p class="eyebrow">Integridade do sistema</p><h2>Operacional</h2></div>
+        <span class="status-dot">Todos os serviços ativos</span>
+        <div class="metrics">
+          <div><span>CPU</span><strong id="cpu-value">24%</strong><i><b id="cpu-bar"></b></i></div>
+          <div><span>Memória</span><strong id="memory-value">3.8 GB</strong><i><b id="memory-bar"></b></i></div>
+          <div><span>Rede</span><strong id="network-value">Estável</strong><i><b class="network-bar"></b></i></div>
+        </div>
+      </section>
+
+      <section id="window-layer" class="window-layer" aria-live="polite"></section>
+      <nav class="dock" aria-label="Barra de aplicativos">
+        <button class="dock-logo" aria-label="Abrir menu">S</button>
+        <button data-open="notes">Notas</button>
+        <button data-open="terminal">Terminal</button>
+        <button data-open="monitor">Monitor</button>
+        <button data-open="files">Arquivos</button>
+        <button data-open="devices">Dispositivos</button>
+        <button data-open="wifi">Wi‑Fi</button>
+        <time id="clock"></time>
+        <button id="lock-desktop" aria-label="Bloquear ambiente">Bloquear</button>
+      </nav>
+    </main>
+    <template id="notes-template">
+      <article class="window notes-window" data-window="notes">
+        <header><div><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>Notas rápidas</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="window-content"><label for="note-text">Nova ideia</label><textarea id="note-text" placeholder="Escreva algo para guardar..." spellcheck="true"></textarea><div class="window-footer"><span id="save-state">Salvo localmente</span><button id="clear-note" class="secondary-button">Limpar</button></div></div>
+      </article>
+    </template>
+    <template id="terminal-template">
+      <article class="window terminal-window" data-window="terminal">
+        <header><div><span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>terminal — <span data-terminal-account>operador</span>@so-boot</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="terminal-body" id="terminal-output"><p><span class="prompt" data-terminal-prompt>operador@so-boot:~$</span> help</p><p>Comandos disponíveis: <b>help</b>, <b>status</b>, <b>clear</b>, <b>date</b></p></div>
+        <form id="terminal-form"><label class="prompt" for="terminal-input" data-terminal-prompt>operador@so-boot:~$</label><input id="terminal-input" autocomplete="off" autofocus /></form>
+      </article>
+    </template>
+    <template id="monitor-template">
+      <article class="window monitor-window" data-window="monitor">
+        <header><div><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>Monitor de recursos</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="window-content"><p class="eyebrow">Uso em tempo real</p><h2 id="monitor-cpu">24% CPU</h2><div class="chart" id="chart" aria-label="Histórico de uso da CPU"></div><div class="service-list"><p><span>interface.desktop</span><b>Em execução</b></p><p><span>sync.local</span><b>Em execução</b></p><p><span>network.service</span><b>Em execução</b></p></div></div>
+      </article>
+    </template>
+    <template id="files-template">
+      <article class="window files-window" data-window="files">
+        <header><div><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>Arquivos — armazenamento local</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="files-layout">
+          <aside class="files-sidebar" aria-label="Locais"><button id="files-home" class="active" type="button">⌂ Meus arquivos</button><button id="files-disks" type="button">▣ Discos locais</button><button type="button" disabled>★ Favoritos</button></aside>
+          <div class="files-content">
+            <div class="files-toolbar"><div><p class="eyebrow">Armazenamento local</p><h2 id="files-title">Meus arquivos</h2></div><button id="new-file" class="primary-button" type="button">+ Novo arquivo</button></div>
+            <p id="files-summary" class="files-summary"></p>
+            <div id="file-list" class="file-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+    </template>
+    <template id="wifi-template">
+      <article class="window wifi-window" data-window="wifi">
+        <header><div><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>Wi‑Fi</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="wifi-content">
+          <div class="wifi-heading"><div><p class="eyebrow">Redes sem fio</p><h2>Escolha uma rede</h2></div><button id="wifi-disconnect" class="secondary-button" type="button">Desconectar</button></div>
+          <p id="wifi-state" class="wifi-state" aria-live="polite"></p>
+          <div id="wifi-list" class="wifi-list" aria-label="Redes Wi‑Fi disponíveis"></div>
+          <div id="wifi-connect-panel" class="wifi-connect-panel" hidden>
+            <strong id="wifi-selected-name"></strong>
+            <label for="wifi-password">Senha da rede</label>
+            <input id="wifi-password" type="password" minlength="8" autocomplete="current-password" placeholder="Digite a senha" />
+            <div><button id="wifi-cancel" class="secondary-button" type="button">Cancelar</button><button id="wifi-connect" class="primary-button" type="button">Conectar</button></div>
+          </div>
+        </div>
+      </article>
+    </template>
+    <template id="devices-template">
+      <article class="window devices-window" data-window="devices">
+        <header><div><span class="window-dot yellow"></span><span class="window-dot green"></span></div><strong>Gerenciador de dispositivos</strong><button class="close-window" aria-label="Fechar">×</button></header>
+        <div class="devices-content">
+          <div class="devices-heading"><div><p class="eyebrow">Hardware do Windows</p><h2>Dispositivos conectados</h2></div><button id="devices-refresh" class="secondary-button" type="button">Atualizar</button></div>
+          <div class="devices-toolbar"><label for="devices-filter">Exibir</label><select id="devices-filter"><option value="all">Todos os dispositivos</option><option value="issues">Somente requer atenção</option></select></div>
+          <p id="devices-summary" class="devices-summary" aria-live="polite"></p>
+          <div id="devices-list" class="devices-list" aria-live="polite"></div>
+        </div>
+      </article>
+    </template>
+    <script src="app.js?v=6"></script>
+  </body>
+</html>
