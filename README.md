@@ -10,9 +10,13 @@ Ambiente de sistema operacional simulado no navegador. Inclui inicialização, d
 
 <img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/b2e0b6b1-a365-4b1f-a80d-671fdf7347b5" />
 
+## Recursos
 
-
-
+- Inicialização simulada, desktop responsivo, relógio e monitor de recursos.
+- Proteção de acesso por PIN, válida apenas neste navegador.
+- Notas persistentes, arquivos locais e Terminal integrado.
+- Central do sistema para backup, restauração e limpeza dos dados locais.
+- Integração local com Wi-Fi, dispositivos Plug and Play e comandos do Windows.
 
 ## Executar
 
@@ -23,6 +27,14 @@ Ambiente de sistema operacional simulado no navegador. Inclui inicialização, d
 O iniciador abre a página automaticamente. Ele usa a porta `8080` quando
 disponível e escolhe a próxima porta livre caso outro servidor já a esteja
 usando.
+
+## Acesso local
+
+No primeiro acesso, defina um PIN numérico de 4 a 12 dígitos. O SO-boot salva
+somente um hash com salt no `localStorage` do navegador; a sessão fica ativa
+somente enquanto a página estiver desbloqueada. Use **Esqueci meu PIN** para
+remover a proteção local e criar outra. Isso não substitui a proteção da conta
+do Windows ou o controle de acesso do navegador.
 
 ## Wi-Fi real
 
@@ -49,3 +61,18 @@ mesmo alcance dessa conta.
 ## Arquivos locais
 
 Abra **Arquivos** para criar e editar textos. O conteúdo é armazenado apenas no `localStorage` do navegador. Use `ls` no Terminal para listar os itens e `cat Nome.txt` para ver um arquivo.
+
+## Backup e restauração
+
+Abra **Central do sistema** pela barra inferior para baixar um backup em JSON
+ou restaurar um backup criado pelo SO-boot. O arquivo contém as notas e os
+arquivos locais deste navegador; o PIN de acesso não é exportado. A opção
+**Limpar dados locais** remove apenas notas e arquivos deste navegador e deve
+ser usada depois de fazer backup quando os dados precisarem ser preservados.
+
+## Requisitos
+
+- Windows com Python 3 disponível no `PATH`.
+- Permissão administrativa ao iniciar pelo arquivo `.cmd` para os recursos que
+  consultam ou alteram Wi-Fi no Windows.
+- Navegador moderno com suporte a `localStorage`, Web Crypto e JavaScript.

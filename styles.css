@@ -184,13 +184,23 @@
 }
 
 /* As janelas mantêm uma posição independente e podem ser reorganizadas pelo cabeçalho. */
-.window-layer { display:block; padding:0; }
-.window { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+.window-layer { display:block; inset:clamp(16px, 2.5vw, 32px); padding:0; }
+.window { position:absolute; top:50%; left:50%; max-width:100%; transform:translate(-50%,-50%); }
 .window header { cursor:grab; touch-action:none; user-select:none; }
 .window header button { cursor:pointer; }
 .window.is-dragging { cursor:grabbing; box-shadow:0 34px 105px rgba(0,0,0,.68); }
+.system-window { width:min(460px, calc(100vw - 32px)); }
+.system-content { padding:25px; }
+.system-content h2 { margin:5px 0 0; font-size:1.55rem; }
+.system-count { margin:24px 0 5px; color:var(--cyan); font-size:1.05rem; font-weight:760; }
+.system-state { min-height:2.8em; margin:0; color:var(--muted); font-size:.86rem; line-height:1.55; }
+.system-actions { display:grid; gap:10px; margin-top:22px; }
+.system-actions button { width:100%; }
+.danger-button { color:#ff9da8; }
+.danger-button:hover { color:#ffd3d8; }
+.system-help { margin:20px 0 0; color:#8291b1; font-size:.76rem; line-height:1.55; }
 @media (max-width:570px) {
-  .window-layer { display:grid; place-items:center; padding:12px; }
+  .window-layer { display:grid; inset:0; place-items:center; padding:12px; }
   .window { position:relative; top:auto; left:auto; transform:none; }
   .window header { cursor:default; touch-action:auto; }
 }
