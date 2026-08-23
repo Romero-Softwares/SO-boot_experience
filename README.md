@@ -2,6 +2,9 @@
 
 Ambiente de sistema operacional simulado no navegador. Inclui inicialização, desktop, notas persistentes, monitor de recursos e gerenciador de arquivos local integrado ao terminal.
 
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/bc4db59e-2381-446d-ae08-42cfa9d58475" />
+
+
 ## Executar
 
 ```powershell
